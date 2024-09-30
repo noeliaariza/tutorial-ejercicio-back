@@ -1,12 +1,15 @@
 package com.ccsw.ejclientes.clients;
 
+import com.ccsw.ejclientes.clients.model.Clients;
 import com.ccsw.ejclientes.clients.model.ClientsDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @author ccsw
@@ -21,6 +24,9 @@ public class ClientsController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    ModelMapper mapper;
+
     /**
      * Método para recuperar todos los clientes
      *
@@ -29,8 +35,9 @@ public class ClientsController {
     @Operation(summary = "Find", description = "Method that return a list of clients")
     @RequestMapping(path = "", method = RequestMethod.GET)
     public List<ClientsDto> findAll() {
+        List<Clients> clients = this.clientService.findAll();
 
-        return this.clientService.findAll();
+        return clients.stream().map(e -> mapper.map(e, ClientsDto.class)).collect(Collectors.toList());
     }
 
     /**
@@ -53,7 +60,7 @@ public class ClientsController {
      */
     @Operation(summary = "Delete", description = "Method that deletes a Client")
     @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable("id") Long id) {
+    public void delete(@PathVariable("id") Long id) throws Exception {
 
         this.clientService.delete(id);
     }
