@@ -5,6 +5,8 @@ import com.ccsw.tutorial.author.model.AuthorDto;
 import com.ccsw.tutorial.author.model.AuthorSearchDto;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
  * @author ccsw
  *
@@ -41,5 +43,12 @@ public interface AuthorService {
      * @param id PK de la entidad
      */
     void delete(Long id) throws Exception;
+
+    /**
+     * Recupera un listado de autores {@link Author}
+     *
+     * @return {@link List} de {@link Author}
+     */
+    List<Author> findAll();
 
 }
