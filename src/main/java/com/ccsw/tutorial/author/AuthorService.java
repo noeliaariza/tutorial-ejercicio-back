@@ -14,6 +14,13 @@ import java.util.List;
 public interface AuthorService {
 
     /**
+     * Recupera un listado de autores {@link Author}
+     *
+     * @return {@link List} de {@link Author}
+     */
+    List<Author> findAll();
+
+    /**
      * Recupera un {@link Author} a través de su ID
      *
      * @param id PK de la entidad
@@ -43,12 +50,5 @@ public interface AuthorService {
      * @param id PK de la entidad
      */
     void delete(Long id) throws Exception;
-
-    /**
-     * Recupera un listado de autores {@link Author}
-     *
-     * @return {@link List} de {@link Author}
-     */
-    List<Author> findAll();
 
 }

@@ -23,6 +23,7 @@ public class GameServiceImpl implements GameService {
 
     @Autowired
     GameRepository gameRepository;
+
     @Autowired
     AuthorService authorService;
 
