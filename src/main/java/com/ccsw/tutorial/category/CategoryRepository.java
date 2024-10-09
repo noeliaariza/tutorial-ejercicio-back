@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author ccsw
  *
  */
+
 public interface CategoryRepository extends CrudRepository<Category, Long> {
 
 }
